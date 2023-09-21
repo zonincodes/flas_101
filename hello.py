@@ -1,5 +1,5 @@
 # imports
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, request
 
 # Initialization
 app = Flask(__name__)
@@ -13,7 +13,7 @@ def hello_world():
 
 @app.route("/moji/")
 def moji():
-    return "Moji shorti Baba is "
+    return "Moji short Baba is "
 
 
 # Variable rules
@@ -39,6 +39,17 @@ def hello_user(name):
         return redirect(url_for("hello_admin"))
     else:
         return redirect(url_for("hello_guest", guest=name))
+
+
+# Flask http methods
+@app.route("/login", methods={'POST', 'GET'})
+def login():
+    if request.method == "POST" or request.method == "post":
+        user = request.form['nm']
+        return redirect(url_for('hello_name', name=user))
+    else:
+        user = request.args.get('nm')
+        return redirect(url_for("hello_guest", guest=user))
 
 
 if __name__ == '__main__':
