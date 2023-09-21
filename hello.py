@@ -1,8 +1,11 @@
+# imports
 from flask import Flask, redirect, url_for
 
+# Initialization
 app = Flask(__name__)
 
 
+# Routing
 @app.route('/')
 def hello_world():
     return "<h1>Hello World</h1>"
@@ -13,6 +16,7 @@ def moji():
     return "Moji shorti Baba is "
 
 
+# Variable rules
 @app.route("/hello/<name>")
 def hello_name(name):
     return "Life will be okay %s!" % name
@@ -28,6 +32,7 @@ def hello_admin():
     return "Hello admin"
 
 
+# Url building
 @app.route("/user/<name>")
 def hello_user(name):
     if name == 'admin':
