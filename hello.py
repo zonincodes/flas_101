@@ -1,5 +1,5 @@
 # imports
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, render_template
 
 # Initialization
 app = Flask(__name__)
@@ -50,6 +50,12 @@ def login():
     else:
         user = request.args.get('nm')
         return redirect(url_for("hello_guest", guest=user))
+
+
+#  Jinja
+@app.route('/score/<int:score>')
+def hello_score(score):
+    return render_template("score.html", marks=score)
 
 
 if __name__ == '__main__':
