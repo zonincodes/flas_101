@@ -8,7 +8,7 @@ def hello_world():
     return "<h1>Hello World</h1>"
 
 
-@app.route("/moji")
+@app.route("/moji/")
 def moji():
     return "Moji shorti Baba is "
 
