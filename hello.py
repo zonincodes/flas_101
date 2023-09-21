@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 # Routing
 @app.route('/')
-def hello_world():
-    return "<h1>Hello World</h1>"
+def index():
+    return render_template('index.html')
 
 
 @app.route("/moji/")
