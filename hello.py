@@ -58,10 +58,17 @@ def hello_score(score):
     return render_template("score.html", marks=score)
 
 
-@app.route("/results/")
+@app.route('/students')
+def students():
+    return render_template("student.html")
+
+
+@app.route("/results/", methods=["POST"])
 def results():
-    result_dict = {'phy': 78, "math": 90, "eng": 56, 'geo': 34}
-    return render_template("results.html", results=result_dict)
+    if request.method == "POST":
+        # result_dict = {'phy': 78, "math": 90, "eng": 56, 'geo': 34}
+        result_dict = request.form
+        return render_template("results.html", results=result_dict)
 
 
 if __name__ == '__main__':
