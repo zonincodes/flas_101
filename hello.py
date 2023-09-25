@@ -1,5 +1,5 @@
 # imports
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, make_response
 
 # Initialization
 app = Flask(__name__)
@@ -69,6 +69,21 @@ def results():
         # result_dict = {'phy': 78, "math": 90, "eng": 56, 'geo': 34}
         result_dict = request.form
         return render_template("results.html", results=result_dict)
+
+
+@app.route("/set-cookie/", methods=["POST"])
+def set_cookie():
+    if request.method == "POST":
+        user = request.form["nm"]
+        resp = make_response(render_template('readCookie.html', name=user))
+        resp.set_cookie('userID', user)
+        return resp
+
+
+@app.route('/get-cookie/')
+def get_cookie():
+    name = request.cookies.get("userID")
+    return f"<h2>welcome {name} </h2>"
 
 
 if __name__ == '__main__':
